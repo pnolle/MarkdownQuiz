@@ -268,7 +268,6 @@ function highlightOption(index) {
 // Mark selected option
 function markSelected(index) {
   const options = document.querySelectorAll('.option');
-  console.log('Total options found:', options.length);
   const correctIndex = currentQuestion.options.findIndex(o => o.isCorrect == true);
 
   options.forEach((opt, i) => {
@@ -276,17 +275,12 @@ function markSelected(index) {
     const hadSelected = opt.classList.contains('selected');
     opt.classList.remove('active');
     if (i === correctIndex) {
-      console.log(`  DOM Element ${i} ("${textContent}"): ADDING selected`);
       opt.classList.add('selected');
     } else {
-      if (hadSelected) {
-        console.log(`  DOM Element ${i} ("${textContent}"): REMOVING selected`);
-      }
       opt.classList.remove('selected');
     }
   });
   userSelected = true;
-  console.log('After markSelected, currentOptionIndex:', currentOptionIndex);
 }
 
 // Reveal answer for multiple choice
@@ -404,6 +398,7 @@ document.addEventListener('keydown', (e) => {
       console.log('Calling revealFreeTextAnswer');
       e.preventDefault();
       revealFreeTextAnswer();
+      return;
     }
   }
 
