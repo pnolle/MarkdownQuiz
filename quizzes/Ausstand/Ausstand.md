@@ -39,7 +39,7 @@
 
 **Answer:** Bilder vom DevSummit in der Bahn hochladen
 
-### Bonus Challenge: Wer ist auf dem Bild zu sehen?
+### Bonus Challenge: Wer ist auf dem Video zu sehen?
 
 **Type:** Multiple Choice
 
@@ -67,6 +67,8 @@
 
 ### Bonus Challenge: Wo befindet sich das Original?
 
+![LogoOnly](./LogoOnly.jpg)
+
 **Type:** Multiple Choice
 
 - [ ] Dortmund
@@ -75,6 +77,23 @@
 - [x] Allershausen
 - [ ] Erfurt
 
+### Bonus Challenge: Wo befindet sich das Original?
+
+![LogoOnly](./Logo.jpg)
+
 ---
 
 
+### Was versuche ich hier?
+
+![Einstandshalber](./20120221_Einstandshalber_zensiert.jpg)
+
+**Type:** Free Text
+
+**Answer:** Dennis. Der andere war René.
+
+
+
+### Bonus Challenge: Dennis
+
+![Einstandshalber](./20120221_Einstandshalber.jpg)
