@@ -1,3 +1,5 @@
+console.log('Quiz app script loaded');
+
 // Quiz App State
 let quizzes = [];
 let currentQuiz = null;
@@ -128,6 +130,10 @@ function showQuestion(index) {
     return;
   }
 
+  if (index < 0) {
+    return;
+  }
+
   currentQuestionIndex = index;
   currentQuestion = currentQuiz.questions[index];
   currentOptionIndex = 0;
@@ -195,15 +201,19 @@ function renderMultipleChoice() {
   const optionsContainer = document.getElementById('optionsContainer');
   optionsContainer.innerHTML = '';
 
+  console.log('Rendering', currentQuestion.options.length, 'options for question:', currentQuestion.title.substring(0, 40));
+
   currentQuestion.options.forEach((option, index) => {
     const optionEl = document.createElement('div');
     optionEl.className = 'option';
     optionEl.innerHTML = `
-      <div class="option-checkbox"></div>
       <div class="option-text">${option.text}</div>
     `;
 
+    console.log(`Created option ${index}:`, option.text.substring(0, 40), 'isCorrect:', option.isCorrect);
+
     optionEl.addEventListener('click', () => {
+      console.log('Clicked on option', index);
       currentOptionIndex = index;
       highlightOption(index);
     });
@@ -243,10 +253,12 @@ function renderFreeText() {
 
 // Highlight option (user is navigating)
 function highlightOption(index) {
+  console.log('highlightOption called with index:', index, 'userSelected:', userSelected);
   const options = document.querySelectorAll('.option');
   options.forEach((opt, i) => {
     opt.classList.remove('active');
     if (i === index && !userSelected) {
+      console.log(`Adding active class to option ${i}: "${opt.textContent.substring(0, 40)}..."`);
       opt.classList.add('active');
     }
   });
@@ -255,29 +267,49 @@ function highlightOption(index) {
 
 // Mark selected option
 function markSelected(index) {
+  console.log('markSelected called with index:', index);
   const options = document.querySelectorAll('.option');
+  console.log('Total options found:', options.length);
+  
   options.forEach((opt, i) => {
+    const textContent = opt.textContent.substring(0, 50).trim();
+    const hadSelected = opt.classList.contains('selected');
     opt.classList.remove('active');
     if (i === index) {
+      console.log(`  DOM Element ${i} ("${textContent}"): ADDING selected`);
       opt.classList.add('selected');
     } else {
+      if (hadSelected) {
+        console.log(`  DOM Element ${i} ("${textContent}"): REMOVING selected`);
+      }
       opt.classList.remove('selected');
     }
   });
   currentOptionIndex = index;
   userSelected = true;
+  console.log('After markSelected, currentOptionIndex:', currentOptionIndex);
 }
 
 // Reveal answer for multiple choice
 function revealMultipleChoiceAnswer() {
+  console.log('revealMultipleChoiceAnswer called');
   const options = document.querySelectorAll('.option');
+  console.log('Found', options.length, 'options');
+  
   options.forEach((opt, index) => {
     const option = currentQuestion.options[index];
+    const textContent = opt.textContent.substring(0, 50).trim();
+    console.log(`DOM Element ${index} ("${textContent}"): API says isCorrect=${option.isCorrect}`);
     
+    // Clear all state classes
+    opt.classList.remove('selected', 'active', 'correct', 'disabled');
+    
+    // Apply correct state
     if (option.isCorrect) {
-      opt.classList.remove('selected');
+      console.log(`  -> Adding CORRECT (green) to DOM element ${index}`);
       opt.classList.add('correct');
-    } else if (index !== currentOptionIndex) {
+    } else {
+      console.log(`  -> Adding DISABLED (gray) to DOM element ${index}`);
       opt.classList.add('disabled');
     }
   });
@@ -286,26 +318,49 @@ function revealMultipleChoiceAnswer() {
   document.getElementById('navHint').innerHTML = 
     'Press <strong>Space</strong> or <strong>→</strong> for next question';
   answerRevealed = true;
+  console.log('Multiple choice answer revealed');
 }
 
 // Reveal answer for free text
 function revealFreeTextAnswer() {
+  console.log('revealFreeTextAnswer called');
   const input = document.getElementById('freeTextInput');
-  input.disabled = true;
+  if (input) {
+    input.disabled = true;
+  }
 
   const answerContainer = document.getElementById('answerContainer');
+  console.log('answerContainer exists:', !!answerContainer);
   answerContainer.classList.remove('hidden');
-  document.getElementById('answerText').textContent = currentQuestion.answer;
+  console.log('answerContainer hidden removed');
+  
+  const answerText = document.getElementById('answerText');
+  console.log('answerText element exists:', !!answerText);
+  answerText.textContent = currentQuestion.answer;
+  console.log('Answer text set to:', currentQuestion.answer);
 
   document.getElementById('navHint').innerHTML = 
     'Press <strong>Space</strong> or <strong>→</strong> for next question';
   answerRevealed = true;
+  console.log('Free text answer revealed');
 }
 
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
+  console.log('Keydown:', e.key);
+  
+  // Always allow back navigation
+  if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    if (currentQuestionIndex > 0) {
+      showQuestion(currentQuestionIndex - 1);
+    }
+    return;
+  }
+  
   // Multiple choice navigation
   if (currentQuestion?.type === 'Multiple Choice' && !answerRevealed) {
+    console.log('In Multiple Choice - answerRevealed:', answerRevealed, 'userSelected:', userSelected);
     if (e.key === 'ArrowUp') {
       e.preventDefault();
       if (!userSelected) {
@@ -319,13 +374,16 @@ document.addEventListener('keydown', (e) => {
         currentOptionIndex = (currentOptionIndex + 1) % currentQuestion.options.length;
         highlightOption(currentOptionIndex);
       }
-    } else if (e.code === 'Space') {
+    } else if (e.code === 'Space' || e.key === ' ') {
+      console.log('Space in Multiple Choice, userSelected:', userSelected, 'currentOptionIndex:', currentOptionIndex);
       e.preventDefault();
       if (!userSelected) {
+        console.log('First Space - marking selected at index', currentOptionIndex);
         markSelected(currentOptionIndex);
         document.getElementById('navHint').innerHTML = 
           'Press <strong>Space</strong> again to reveal answer';
       } else {
+        console.log('Second Space - revealing answer');
         revealMultipleChoiceAnswer();
       }
     } else if (e.key === 'ArrowRight') {
@@ -342,13 +400,15 @@ document.addEventListener('keydown', (e) => {
 
   // Free text answer reveal
   if (currentQuestion?.type === 'Free Text' && !answerRevealed) {
-    if ((e.code === 'Space' || e.key === 'ArrowRight') && document.activeElement.id === 'freeTextInput') {
+    console.log('In Free Text handler - key:', e.key);
+    if (e.code === 'Space' || e.key === ' ' || e.key === 'ArrowRight') {
+      console.log('Calling revealFreeTextAnswer');
       e.preventDefault();
       revealFreeTextAnswer();
     }
   }
 
-  // Navigation between questions
+  // Navigation between questions (after answer revealed)
   if (answerRevealed) {
     if (e.code === 'Space') {
       e.preventDefault();
@@ -356,9 +416,6 @@ document.addEventListener('keydown', (e) => {
     } else if (e.key === 'ArrowRight') {
       e.preventDefault();
       showQuestion(currentQuestionIndex + 1);
-    } else if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      showQuestion(currentQuestionIndex - 1);
     }
   }
 

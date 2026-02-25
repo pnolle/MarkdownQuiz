@@ -1,3 +1,5 @@
 .DS_Store
 **/*.MOV
+**/*.JPG
+**/*.PNG
 /node_modules

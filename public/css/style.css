@@ -175,7 +175,7 @@ body {
 
 .option {
   background: var(--light);
-  border: 2px solid transparent;
+  border: 2px solid #e8e8e8;
   padding: 15px 20px;
   margin-bottom: 12px;
   border-radius: var(--border-radius);
@@ -191,51 +191,35 @@ body {
 }
 
 .option.active {
-  background: #d5dbef;
-  border-color: var(--secondary-color);
-  border-width: 2px;
+  background: #d5dbef !important;
+  border-color: var(--secondary-color) !important;
+  border-width: 2px !important;
+  color: inherit !important;
 }
 
 .option.selected {
-  background: var(--secondary-color);
-  color: white;
-  border-color: var(--secondary-color);
-  cursor: default;
+  background: var(--secondary-color) !important;
+  color: white !important;
+  border-color: var(--secondary-color) !important;
+  cursor: default !important;
 }
 
 .option.correct {
-  background: var(--success-color);
-  color: white;
-  border-color: var(--success-color);
-  cursor: default;
+  background: var(--success-color) !important;
+  color: white !important;
+  border-color: var(--success-color) !important;
+  cursor: default !important;
 }
 
 .option.disabled {
-  background: #ecf0f1;
-  color: #95a5a6;
-  border-color: #bdc3c7;
-  cursor: default;
+  background: #ecf0f1 !important;
+  color: #95a5a6 !important;
+  border-color: #bdc3c7 !important;
+  cursor: default !important;
 }
-
-.option-checkbox {
-  width: 20px;
-  height: 20px;
-  border: 2px solid currentColor;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.option.correct .option-checkbox::after {
-  content: '✓';
-  color: white;
-  font-weight: bold;
-}
-
 .option-text {
   flex: 1;
+  width: 100%;
 }
 
 /* Free Text Input */
