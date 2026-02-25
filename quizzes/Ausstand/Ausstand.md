@@ -15,7 +15,7 @@
 
 ### Warum lieg ich in der Hängematte und schau mich dabei selber auf dem Telefon an?
 
-![TTS](./TTS.png)
+![TTS](./TTS.jpg)
 
 **Type:** Free Text
 
