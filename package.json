@@ -1,0 +1,17 @@
+{
+  "name": "markdown-quiz",
+  "version": "1.0.0",
+  "description": "Interactive quiz app based on Markdown files",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["quiz", "markdown"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "markdown-it": "^13.0.1"
+  }
+}

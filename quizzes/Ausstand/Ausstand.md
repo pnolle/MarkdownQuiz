@@ -1,64 +1,79 @@
 # NIK's Ausstands-Kneipenquiz
 
 ### Bei welcher Gelegenheit entstand dieses Foto?
-<a href="./PirateCase.jpg" target="_blank"><img src="./PirateCase.jpg" alt="Pirate Case" style="max-height: 500px;"></a>
 
-- [ ] Ich wollte beim Telefonieren ungestört sein und Daniel Kuhl saß auf der anderen Seite.<br/>
-- [ ] Für einen IT-Supportcase, weil der Deckel der neuen Telefonhülle beim Telefonieren das Auge überdeckt.<br/>
-- [ ] Hat gar nix mit dem Telefon zu tun.<br/>
+![Pirate Case](./PirateCase.jpg)
+
+**Type:** Multiple Choice
+
+- [ ] Ich wollte beim Telefonieren ungestört sein und Daniel Kuhl saß auf der anderen Seite.
+- [x] Für einen IT-Supportcase, weil der Deckel der neuen Telefonhülle beim Telefonieren das Auge überdeckt.
+- [ ] Hat gar nix mit dem Telefon zu tun.
 
 
 ---
 
 ### Warum lieg ich in der Hängematte und schau mich dabei selber auf dem Telefon an?
-<a href="./TTS.png" target="_blank"><img src="./TTS.png" alt="TTS" style="max-height: 500px;"></a><br/>
-<input type="text" value="Vermutungen bitte hier" style="width:500px;" />
 
-<p class="response" style="display:none">Ich verfolge meine TechSession bei der virtuellen EsriKon 2021.</p>
+![TTS](./TTS.png)
+
+**Type:** Free Text
+
+**Answer:** Ich verfolge meine TechSession bei der virtuellen EsriKon 2021.
 
 ### Bonus Challenge: Wo ist das Foto entstanden?
 
-- [ ] Toskana<br/>
-- [ ] Kranzberg<br/>
-- [ ] Südfrankreich<br/>
+**Type:** Multiple Choice
+
+- [x] Toskana
+- [ ] Kranzberg
+- [ ] Südfrankreich
 
 ---
 
 ### Was versuche ich hier?
-<video src="./IMG_3779.MOV" controls autoplay loop style="max-height: 500px;" allowfullscreen></video><br/>
-<input type="text" value="Naaa?" style="width:500px;" />
 
-<p class="response" style="display:none">Bilder vom DevSummit in der Bahn hochladen</p>
+![Video](./IMG_3779.MOV)
+
+**Type:** Free Text
+
+**Answer:** Bilder vom DevSummit in der Bahn hochladen
 
 ### Bonus Challenge: Wer ist auf dem Bild zu sehen?
 
-- [ ] Kerstin van de Sand<br/>
-- [ ] Gerd van de Sand<br/>
-- [ ] Jack Dangermond<br/>
-- [ ] TK<br/>
-- [ ] Euan Cameron<br/>
+**Type:** Multiple Choice
+
+- [ ] Kerstin van de Sand
+- [ ] Gerd van de Sand
+- [ ] Jack Dangermond
+- [ ] TK
+- [x] Euan Cameron
 
 ---
 
 ### Was zeigt dieses Bild?
-<a href="./LogoOnly.jpg" target="_blank"><img src="./LogoOnly.jpg" alt="LogoOnly" style="max-height: 300px;"></a>
 
-- [ ] Kacke<br/>
-- [ ] Katjes<br/>
-- [ ] Hairstyle<br/>
-- [ ] Fuchs<br/>
-- [ ] Hase<br/>
-- [ ] Tannenzapfen<br/>
-- [ ] Zahnpasta<br/>
-- [ ] <input type="text" value="Phantasie" style="width:300px;" />
+![LogoOnly](./LogoOnly.jpg)
+
+**Type:** Multiple Choice
+
+- [ ] Kacke
+- [ ] Katjes
+- [ ] Hairstyle
+- [x] Fuchs
+- [ ] Hase
+- [ ] Tannenzapfen
+- [ ] Zahnpasta
 
 ### Bonus Challenge: Wo befindet sich das Original?
 
-- [ ] Dortmund<br/>
-- [ ] Palm Springs<br/>
-- [ ] Redlands<br/>
-- [ ] Allershausen<br/>
-- [ ] Erfurt<br/>
+**Type:** Multiple Choice
+
+- [ ] Dortmund
+- [ ] Palm Springs
+- [ ] Redlands
+- [x] Allershausen
+- [ ] Erfurt
 
 ---
 

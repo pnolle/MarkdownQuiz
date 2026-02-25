@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Quiz</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Start Page -->
+    <div id="startPage" class="page">
+      <div class="start-container">
+        <div class="start-content">
+          <h1 id="quizTitle">Select a Quiz</h1>
+          <div class="start-info">
+            <p>Press <strong>Space</strong> or <strong>→</strong> to start</p>
+          </div>
+        </div>
+        <div class="media-sidebar">
+          <div id="mediaGallery" class="media-gallery">
+            <!-- Media files will be populated here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Question Page -->
+    <div id="questionPage" class="page hidden">
+      <div class="question-container">
+        <div class="question-header">
+          <span id="questionCount">1/10</span>
+          <span id="bonusIndicator" class="bonus-badge hidden">BONUS</span>
+        </div>
+
+        <h2 id="questionTitle">Question?</h2>
+
+        <div id="mediaContainer" class="media-container"></div>
+
+        <div id="optionsContainer" class="options-container"></div>
+
+        <div id="answerContainer" class="answer-container hidden">
+          <div class="answer-box">
+            <p><strong>Answer:</strong></p>
+            <p id="answerText"></p>
+          </div>
+        </div>
+
+        <div class="navigation-hint">
+          <p id="navHint">Press <strong>Space</strong> or <strong>→</strong> to continue</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz Select Page -->
+    <div id="quizSelectPage" class="page">
+      <div class="quiz-select-container">
+        <h1>Select a Quiz</h1>
+        <div id="quizList" class="quiz-list">
+          <!-- Quizzes will be populated here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
