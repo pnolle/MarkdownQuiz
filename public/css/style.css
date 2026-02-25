@@ -161,10 +161,11 @@ body {
 
 .media-container img,
 .media-container video {
-  max-width: 100%;
-  max-height: 400px;
+  max-width: 90%;
+  max-height: 60vh;
   border-radius: var(--border-radius);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  object-fit: contain;
 }
 
 /* Options Container */
@@ -190,12 +191,15 @@ body {
 }
 
 .option.active {
+  background: #d5dbef;
+  border-color: var(--secondary-color);
+  border-width: 2px;
+}
+
+.option.selected {
   background: var(--secondary-color);
   color: white;
   border-color: var(--secondary-color);
-}
-
-.option.revealed {
   cursor: default;
 }
 
@@ -203,12 +207,14 @@ body {
   background: var(--success-color);
   color: white;
   border-color: var(--success-color);
+  cursor: default;
 }
 
-.option.incorrect {
-  background: var(--danger-color);
-  color: white;
-  border-color: var(--danger-color);
+.option.disabled {
+  background: #ecf0f1;
+  color: #95a5a6;
+  border-color: #bdc3c7;
+  cursor: default;
 }
 
 .option-checkbox {

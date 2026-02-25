@@ -5,6 +5,7 @@ let currentQuestionIndex = 0;
 let currentQuestion = null;
 let currentOptionIndex = 0;
 let answerRevealed = false;
+let userSelected = false;
 let userAnswer = null;
 
 // DOM Elements
@@ -131,6 +132,7 @@ function showQuestion(index) {
   currentQuestion = currentQuiz.questions[index];
   currentOptionIndex = 0;
   answerRevealed = false;
+  userSelected = false;
   userAnswer = null;
 
   startPage.classList.add('hidden');
@@ -163,7 +165,8 @@ function showQuestion(index) {
       media = document.createElement('video');
       media.src = mediaPath;
       media.controls = true;
-      media.autoplay = false;
+      media.autoplay = true;
+      media.muted = true;
     } else {
       media = document.createElement('img');
       media.src = mediaPath;
@@ -182,6 +185,9 @@ function showQuestion(index) {
   } else if (currentQuestion.type === 'Free Text') {
     renderFreeText();
   }
+
+  // Reset selection state
+  userSelected = false;
 }
 
 // Render multiple choice options
@@ -205,8 +211,8 @@ function renderMultipleChoice() {
     optionsContainer.appendChild(optionEl);
   });
 
-  // Highlight first option
-  highlightOption(0);
+  // Don't auto-highlight first option - let user navigate
+  currentOptionIndex = 0;
 
   // Update navigation hint
   document.getElementById('navHint').innerHTML = 
@@ -235,27 +241,44 @@ function renderFreeText() {
     'Press <strong>Space</strong> or <strong>→</strong> to reveal the answer';
 }
 
-// Highlight option
+// Highlight option (user is navigating)
 function highlightOption(index) {
   const options = document.querySelectorAll('.option');
   options.forEach((opt, i) => {
     opt.classList.remove('active');
-    if (i === index) {
+    if (i === index && !userSelected) {
       opt.classList.add('active');
     }
   });
   currentOptionIndex = index;
 }
 
+// Mark selected option
+function markSelected(index) {
+  const options = document.querySelectorAll('.option');
+  options.forEach((opt, i) => {
+    opt.classList.remove('active');
+    if (i === index) {
+      opt.classList.add('selected');
+    } else {
+      opt.classList.remove('selected');
+    }
+  });
+  currentOptionIndex = index;
+  userSelected = true;
+}
+
 // Reveal answer for multiple choice
 function revealMultipleChoiceAnswer() {
   const options = document.querySelectorAll('.option');
   options.forEach((opt, index) => {
-    opt.classList.add('revealed');
     const option = currentQuestion.options[index];
     
     if (option.isCorrect) {
+      opt.classList.remove('selected');
       opt.classList.add('correct');
+    } else if (index !== currentOptionIndex) {
+      opt.classList.add('disabled');
     }
   });
 
@@ -285,19 +308,35 @@ document.addEventListener('keydown', (e) => {
   if (currentQuestion?.type === 'Multiple Choice' && !answerRevealed) {
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      currentOptionIndex = (currentOptionIndex - 1 + currentQuestion.options.length) % 
-                          currentQuestion.options.length;
-      highlightOption(currentOptionIndex);
+      if (!userSelected) {
+        currentOptionIndex = (currentOptionIndex - 1 + currentQuestion.options.length) % 
+                            currentQuestion.options.length;
+        highlightOption(currentOptionIndex);
+      }
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
-      currentOptionIndex = (currentOptionIndex + 1) % currentQuestion.options.length;
-      highlightOption(currentOptionIndex);
+      if (!userSelected) {
+        currentOptionIndex = (currentOptionIndex + 1) % currentQuestion.options.length;
+        highlightOption(currentOptionIndex);
+      }
     } else if (e.code === 'Space') {
       e.preventDefault();
-      revealMultipleChoiceAnswer();
+      if (!userSelected) {
+        markSelected(currentOptionIndex);
+        document.getElementById('navHint').innerHTML = 
+          'Press <strong>Space</strong> again to reveal answer';
+      } else {
+        revealMultipleChoiceAnswer();
+      }
     } else if (e.key === 'ArrowRight') {
       e.preventDefault();
-      revealMultipleChoiceAnswer();
+      if (!userSelected) {
+        markSelected(currentOptionIndex);
+        document.getElementById('navHint').innerHTML = 
+          'Press <strong>Space</strong> again to reveal answer';
+      } else {
+        revealMultipleChoiceAnswer();
+      }
     }
   }
 
