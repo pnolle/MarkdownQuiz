@@ -267,15 +267,15 @@ function highlightOption(index) {
 
 // Mark selected option
 function markSelected(index) {
-  console.log('markSelected called with index:', index);
   const options = document.querySelectorAll('.option');
   console.log('Total options found:', options.length);
-  
+  const correctIndex = currentQuestion.options.findIndex(o => o.isCorrect == true);
+
   options.forEach((opt, i) => {
     const textContent = opt.textContent.substring(0, 50).trim();
     const hadSelected = opt.classList.contains('selected');
     opt.classList.remove('active');
-    if (i === index) {
+    if (i === correctIndex) {
       console.log(`  DOM Element ${i} ("${textContent}"): ADDING selected`);
       opt.classList.add('selected');
     } else {
@@ -285,7 +285,6 @@ function markSelected(index) {
       opt.classList.remove('selected');
     }
   });
-  currentOptionIndex = index;
   userSelected = true;
   console.log('After markSelected, currentOptionIndex:', currentOptionIndex);
 }
