@@ -79,12 +79,14 @@
 
 ### Bonus Challenge: Wo befindet sich das Original?
 
+**Type:** Multiple Choice
+
 ![LogoOnly](./Logo.jpg)
 
 ---
 
 
-### Was versuche ich hier?
+### Welcher schöne Mensch feiert mit mir hier seinen Einstand?
 
 ![Einstandshalber](./20120221_Einstandshalber_zensiert.jpg)
 
@@ -94,6 +96,64 @@
 
 
 
-### Bonus Challenge: Dennis
+### Bonus Challenge: Wann war mein Eintrittsdatum?
 
 ![Einstandshalber](./20120221_Einstandshalber.jpg)
+
+
+**Type:** Free Text
+
+**Answer:** 01.01.2012
+
+
+
+### Schätze das Datum. Wer am nächsten dran ist gewinnt.
+
+![Einstandshalber](./20141111.jpg)
+
+**Type:** Free Text
+
+**Answer:** 11.11.2014
+
+
+
+### Bonus Challenge: Eine Person auf diesem Bild hatte vor Esri einen ungewöhlichen Job. Welcher war es?
+
+![Einstandshalber](./20141111.jpg)
+
+**Type:** Multiple Choice
+
+- [ ] Astronaut
+- [x] Waffenhändler
+- [ ] Straßenkünstler
+- [ ] Vulkanforscher
+- [ ] Schatzsucher
+
+
+
+### Ein gemeinsamer Ausflug hilft Wunder, um die Teamkultur zu stärken. Für welchen haben wir uns damals entschieden?
+
+![Einstandshalber](./20160629_KölnKulturEntscheidungshilfe.png)
+
+**Type:** Free Text
+
+**Answer:** Keinen.
+
+
+
+
+### Dafür haben wir Jahre später einen ganz anderen Ausflug mit dem ganzen Kölner Büro unternommen. Wo waren wir hier?
+
+![Einstandshalber](./Schraube.jpg)
+
+**Type:** Free Text
+
+**Answer:** Auf dem Kölner Domdach, 2019
+
+
+
+
+
+
+
+
