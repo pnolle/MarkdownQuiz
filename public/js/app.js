@@ -40,6 +40,19 @@ async function loadQuiz(quizName) {
     const response = await fetch(`/api/quiz/${quizName}`);
     currentQuiz = await response.json();
     currentQuestionIndex = 0;
+    
+    // Check for URL parameter to jump to specific question
+    const params = new URLSearchParams(window.location.search);
+    const jumpToQuestion = params.get('question');
+    
+    if (jumpToQuestion) {
+      const questionIndex = parseInt(jumpToQuestion, 10) - 1; // Convert 1-based to 0-based
+      if (questionIndex >= 0 && questionIndex < currentQuiz.questions.length) {
+        showQuestion(questionIndex);
+        return;
+      }
+    }
+    
     showStartPage();
   } catch (error) {
     console.error('Error loading quiz:', error);
@@ -116,8 +129,20 @@ function showQuizSelect() {
   });
 }
 
-// Start quiz (go to first question)
+// Start quiz (go to first question or URL parameter)
 function startQuiz() {
+  const params = new URLSearchParams(window.location.search);
+  const jumpToQuestion = params.get('question');
+  
+  if (jumpToQuestion) {
+    const questionIndex = parseInt(jumpToQuestion, 10) - 1; // Convert 1-based to 0-based
+    if (questionIndex >= 0 && questionIndex < currentQuiz.questions.length) {
+      currentQuestionIndex = questionIndex;
+      showQuestion(questionIndex);
+      return;
+    }
+  }
+  
   currentQuestionIndex = 0;
   showQuestion(0);
 }
